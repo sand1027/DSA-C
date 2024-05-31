@@ -113,26 +113,32 @@ void del_at_pos(int pos){
     temp = NULL;
     
 }
+void del_value(int data){
+struct node *temp = head,*temp2=NULL;
+while (temp!=NULL && temp->data!=data)
+{
+    temp2=temp;
+    temp = temp->link;
+}
+temp2->link = temp->link;
+free(temp);
+temp=NULL;
+
+}
 void count()
 {
-    int count = 0;
-    struct node* temp;
-    temp = head;
-    do
-    {
-        count ++;
-        temp = temp->link;
-    } 
-    while (temp != NULL);
-    {
-        printf("the total number of nodes are :%d",count);
-    }
-    
+int count = 0;
+struct node *temp;
+temp = head;
+while(temp!=NULL){
+    count++;
+    temp=temp->link;
 }
-void reverse(){
-    struct node *prev,*next;
-    while (head!=NULL)
-    {
+printf("the number node in list is :%d\n",count);
+}
+void reverse() {
+    struct node *prev = NULL, *next = NULL;
+    while (head != NULL) {
         next = head->link;
         head->link = prev;
         prev = head;
@@ -151,7 +157,7 @@ void find_max(){
         }
         temp = temp->link;
     }
-    printf("The Maximun Number in list is : %d",max);
+    printf("The Maximun Number in list is : %d\n",max);
 }
 void find_mid(){
     struct node *onestep=head,*twostep=head;
@@ -166,7 +172,8 @@ int main()
 {
     int data;
     insert_at_beg(1);
-    insert_at_beg(100);
+    insert_at_beg(19);
+    insert_at_beg(10);
     insert_at_beg(2);
     insert_at_end(3);
     insert_at_end(4);
@@ -174,10 +181,11 @@ int main()
     insert_at_pos(78,2);
     insert_at_pos(79, 3);
     delete_at_end();
-    reverse();
+    del_value(4);
+     reverse();
     display();
     find_max();
     count();
-    
+    find_mid();
     return 0;
 }
