@@ -153,6 +153,14 @@ void find_max(){
     }
     printf("The Maximun Number in list is : %d",max);
 }
+void find_mid(){
+    struct node *onestep=head,*twostep=head;
+    while(twostep!=NULL&&twostep->link!=NULL){
+        onestep=onestep->link;
+        twostep=twostep->link->link;
+    }
+    printf("The middle node is %d\n",onestep->data);
+}
 
 int main()
 {
